@@ -13,14 +13,13 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { red } from '@mui/material/colors';
 import styled from 'styled-components';
-import City from '../../assets/storm.jpeg';
 
 const Base = styled(Card)`
   max-width: 345px;
   border-radius: 16px;
 `;
 
-const UserCard = () => (
+const Post = ({ image, text }) => (
   <Base>
     <CardHeader
       avatar={
@@ -31,11 +30,10 @@ const UserCard = () => (
       title="Shrimp and Chorizo Paella"
       subheader="September 14, 2016"
     />
-    <CardMedia component="img" height="194" image={City} alt="Paella dish" />
+    <CardMedia component="img" height="194" image={image} alt="Paella dish" />
     <CardContent>
       <Typography variant="body2" color="text.secondary">
-        This impressive paella is a perfect party dish and a fun meal to cook together with your
-        guests. Add 1 cup of frozen peas along with the mussels, if you like.
+        {text}
       </Typography>
     </CardContent>
     <CardActions disableSpacing>
@@ -45,4 +43,4 @@ const UserCard = () => (
     </CardActions>
   </Base>
 );
-export default UserCard;
+export default Post;
