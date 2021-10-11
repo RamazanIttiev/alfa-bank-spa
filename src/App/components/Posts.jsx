@@ -1,11 +1,12 @@
 import { Box, Grid } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { getUsers } from '../services';
 import { mapPosts } from '../services/mappers';
 import { setPosts } from '../store/postsSlice';
 import Post from './Post';
+import ToggleButtons from './ToggleButtons';
 
 const Base = styled(Grid).attrs({
   maxWidth: 'lg',
@@ -15,6 +16,7 @@ const Base = styled(Grid).attrs({
 
 const Posts = () => {
   const dispatch = useDispatch();
+  const [value, setValue] = useState(0);
 
   useEffect(async () => {
     const posts = await getUsers();
@@ -23,17 +25,20 @@ const Posts = () => {
 
   const posts = useSelector(state => state.posts);
   const favourites = useSelector(state => state.favourites);
-  const filtered = posts.filter(post => favourites.indexOf(post.id) >= 0);
+
+  const favouritePosts = posts.filter(post => favourites.indexOf(post.id) >= 0);
+
+  const togglePosts = value === 0 ? posts : favouritePosts;
 
   return (
-    <Box>
+    <Box padding="24px">
+      <ToggleButtons value={value} setValue={setValue} />
       <Base container spacing={5}>
-        {posts.length > 0 &&
-          posts.map(post => (
-            <Grid key={post.id} item>
-              <Post isFavourite={favourites.indexOf(post.id) >= 0} {...post} />
-            </Grid>
-          ))}
+        {togglePosts.map(post => (
+          <Grid key={post.id} item>
+            <Post isFavourite={favourites.indexOf(post.id) >= 0} {...post} />
+          </Grid>
+        ))}
       </Base>
     </Box>
   );

@@ -29,6 +29,7 @@ const Post = ({ id, image, owner, text, publishDate, isFavourite }) => {
       dispatch(addFavourites(id));
     } else dispatch(removeFavourites(id));
   };
+
   return (
     <Base>
       <CardHeader
