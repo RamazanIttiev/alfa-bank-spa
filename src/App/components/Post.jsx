@@ -13,22 +13,32 @@ import {
 
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { Favorite, FavoriteBorder } from '@mui/icons-material';
+import { Favorite, FavoriteBorder, HighlightOffOutlined } from '@mui/icons-material';
 import { removeFavourites, addFavourites } from '../store/favouritesSlice';
+import { deletePost } from '../services';
+import { removePost } from '../store/postsSlice';
 
 const Base = styled(Card)`
   width: 345px;
   min-height: 420px;
   border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `;
 
 const Post = ({ id, image, owner, text, publishDate, isFavourite }) => {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleFavourites = () => {
     if (!isFavourite) {
       dispatch(addFavourites(id));
     } else dispatch(removeFavourites(id));
+  };
+
+  const handleDelete = async () => {
+    const deletedPost = await deletePost(id);
+    dispatch(removePost(deletedPost));
   };
 
   return (
@@ -43,11 +53,14 @@ const Post = ({ id, image, owner, text, publishDate, isFavourite }) => {
         <Typography>{text}</Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton onClick={handleClick}>
+        <IconButton onClick={handleFavourites}>
           <Checkbox
             icon={<FavoriteBorder style={{ color: '#fff' }} />}
             checkedIcon={<Favorite />}
           />
+        </IconButton>
+        <IconButton onClick={handleDelete}>
+          <HighlightOffOutlined color="secondary" />
         </IconButton>
       </CardActions>
     </Base>
