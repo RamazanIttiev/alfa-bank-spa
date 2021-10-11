@@ -8,4 +8,5 @@ export const mapPosts = response =>
       avatar: post.owner.picture,
     },
     text: post.text,
+    publishDate: new Date(post.publishDate).toLocaleDateString(),
   }));
