@@ -31,7 +31,7 @@ const Posts = () => {
   const togglePosts = value === 0 ? posts : favouritePosts;
 
   return (
-    <Box padding="24px">
+    <Box padding="8px">
       <ToggleButtons value={value} setValue={setValue} />
       <Base container spacing={5}>
         {togglePosts.map(post => (
