@@ -23,7 +23,7 @@ const Posts = () => {
     dispatch(setPosts(mapPosts(posts)));
   }, []);
 
-  const posts = useSelector(state => state.posts);
+  const posts = useSelector(state => state.posts.posts);
   const favourites = useSelector(state => state.favourites);
 
   const favouritePosts = posts.filter(post => favourites.indexOf(post.id) >= 0);
