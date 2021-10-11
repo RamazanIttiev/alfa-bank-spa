@@ -17,7 +17,8 @@ import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import { removeFavourites, addFavourites } from '../store/favouritesSlice';
 
 const Base = styled(Card)`
-  max-width: 345px;
+  width: 345px;
+  min-height: 420px;
   border-radius: 16px;
 `;
 
