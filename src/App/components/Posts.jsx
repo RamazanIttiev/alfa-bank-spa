@@ -22,14 +22,16 @@ const Posts = () => {
   }, []);
 
   const posts = useSelector(state => state.posts);
+  const favourites = useSelector(state => state.favourites);
+  const filtered = posts.filter(post => favourites.indexOf(post.id) >= 0);
 
   return (
     <Box>
       <Base container spacing={5}>
         {posts.length > 0 &&
-          posts.map(user => (
-            <Grid item>
-              <Post key={user.id} {...user} />
+          posts.map(post => (
+            <Grid key={post.id} item>
+              <Post isFavourite={favourites.indexOf(post.id) >= 0} {...post} />
             </Grid>
           ))}
       </Base>
