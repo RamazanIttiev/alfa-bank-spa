@@ -50,9 +50,9 @@ const Posts = () => {
 
   const favourites = posts.filter(post => favouritesIds.indexOf(post.id) >= 0);
 
-  const togglePosts = value === 0 ? posts : favourites;
+  const activePosts = value === 0 ? posts : favourites;
 
-  if (posts.length === 0) {
+  if (!posts) {
     return (
       <LoadingBar>
         <ReactLoading type="bubbles" color="#fff" />
@@ -66,7 +66,7 @@ const Posts = () => {
         {favourites.length === 0 && value === 1 ? (
           <EmptyMessage>Favourite list is empty</EmptyMessage>
         ) : (
-          togglePosts.map(post => (
+          activePosts.map(post => (
             <Grid key={post.id} item>
               <Post isFavourite={favouritesIds.indexOf(post.id) >= 0} {...post} />
             </Grid>
