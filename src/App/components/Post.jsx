@@ -36,12 +36,11 @@ const Post = ({ id, image, owner, text, publishDate, isFavourite }) => {
     } else dispatch(removeFavourites(id));
   };
 
-  const handleDelete = async () => {
-    setIsDeleted(true);
+  const handleDelete = () => {
     (async () => {
       deletePost(id, dispatch);
     })();
-    setIsDeleted(false);
+    setIsDeleted(true);
   };
 
   return (
