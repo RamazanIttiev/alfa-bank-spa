@@ -12,6 +12,7 @@ export const theme = createTheme({
     background: {
       default: '#191A1C',
       paper: '#2f3237',
+      hover: '#fff6aa',
     },
     text: {
       primary: '#ffffff',
@@ -20,5 +21,19 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: '"Montserrat", "Open Sans"',
+    h1: {
+      fontSize: 24,
+      fontWeight: 700,
+      lineHeight: 1.54,
+    },
+  },
+  components: {
+    MuiGrid: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+        },
+      },
+    },
   },
 });

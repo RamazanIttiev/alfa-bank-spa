@@ -8,11 +8,18 @@ import { setPosts } from '../store/postsSlice';
 import Post from './Post';
 import ToggleButtons from './ToggleButtons';
 
-const Base = styled(Grid).attrs({
-  maxWidth: 'lg',
+const Base = styled(Box).attrs({
+  padding: '8px',
 })`
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
+
+const PostsWrapper = styled(Grid).attrs({
+  maxWidth: 'lg',
+  spacing: 5,
+})``;
 
 const Posts = () => {
   const dispatch = useDispatch();
@@ -31,16 +38,16 @@ const Posts = () => {
   const togglePosts = value === 0 ? posts : favouritePosts;
 
   return (
-    <Box padding="8px">
+    <Base>
       <ToggleButtons value={value} setValue={setValue} />
-      <Base container spacing={5}>
+      <PostsWrapper container>
         {togglePosts.map(post => (
           <Grid key={post.id} item>
             <Post isFavourite={favourites.indexOf(post.id) >= 0} {...post} />
           </Grid>
         ))}
-      </Base>
-    </Box>
+      </PostsWrapper>
+    </Base>
   );
 };
 
