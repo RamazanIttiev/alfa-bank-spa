@@ -4,7 +4,7 @@ import { removePost, setPosts } from '../store/postsSlice';
 
 export const getPosts = async dispatch => {
   try {
-    const response = await fetch(`${URL}post?page=1&limit=9`, {
+    const response = await fetch(`${URL}post?limit=9`, {
       headers: {
         'app-id': process.env.REACT_APP_API_ID,
       },
