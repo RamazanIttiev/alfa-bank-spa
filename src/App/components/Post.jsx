@@ -26,9 +26,9 @@ const Base = styled(Card).attrs({ sx: { letterSpacing: 2 } })`
   justify-content: space-around;
 `;
 
-const Post = ({ id, image, owner, text, publishDate, isFavourite }) => {
+const Post = ({ id, image, author, text, publishDate, isFavourite }) => {
   const dispatch = useDispatch();
-  const [isDeleted, setIsDeleted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleFavourites = () => {
     if (!isFavourite) {
@@ -40,14 +40,14 @@ const Post = ({ id, image, owner, text, publishDate, isFavourite }) => {
     (async () => {
       deletePost(id, dispatch);
     })();
-    setIsDeleted(true);
+    setLoading(true);
   };
 
   return (
     <Base>
       <CardHeader
-        avatar={<Avatar alt={owner.firstName} src={owner.avatar} />}
-        title={`${owner.firstName} ${owner.lastName}`}
+        avatar={<Avatar alt={author.firstName} src={author.avatar} />}
+        title={`${author.firstName} ${author.lastName}`}
         subheader={publishDate}
       />
       <CardMedia component="img" height="194" image={image} alt={text} />
@@ -61,7 +61,7 @@ const Post = ({ id, image, owner, text, publishDate, isFavourite }) => {
             checkedIcon={<Favorite />}
           />
         </IconButton>
-        <IconButton disabled={isDeleted} onClick={handleDelete}>
+        <IconButton disabled={loading} onClick={handleDelete}>
           <HighlightOffOutlined color="secondary" />
         </IconButton>
       </CardActions>

@@ -38,23 +38,23 @@ const Posts = () => {
     })();
   }, []);
 
-  const posts = useSelector(state => state.posts.posts);
-  const favourites = useSelector(state => state.favourites);
+  const posts = useSelector(state => state.posts);
+  const favouritesIds = useSelector(state => state.favourites);
 
-  const favouritePosts = posts.filter(post => favourites.indexOf(post.id) >= 0);
+  const favourites = posts.filter(post => favouritesIds.indexOf(post.id) >= 0);
 
-  const togglePosts = value === 0 ? posts : favouritePosts;
+  const togglePosts = value === 0 ? posts : favourites;
 
   return (
     <Base>
       <ToggleButtons value={value} setValue={setValue} />
       <PostsWrapper container>
-        {favouritePosts.length === 0 && value === 1 ? (
+        {favourites.length === 0 && value === 1 ? (
           <EmptyMessage>Favourite list is empty</EmptyMessage>
         ) : (
           togglePosts.map(post => (
             <Grid key={post.id} item>
-              <Post isFavourite={favourites.indexOf(post.id) >= 0} {...post} />
+              <Post isFavourite={favouritesIds.indexOf(post.id) >= 0} {...post} />
             </Grid>
           ))
         )}
