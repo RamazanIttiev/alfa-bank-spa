@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.js": "/my-app/static/js/main.e1637d80.chunk.js",
-    "main.js.map": "/my-app/static/js/main.e1637d80.chunk.js.map",
-    "runtime-main.js": "/my-app/static/js/runtime-main.480eda55.js",
-    "runtime-main.js.map": "/my-app/static/js/runtime-main.480eda55.js.map",
-    "static/js/2.f1ea0d71.chunk.js": "/my-app/static/js/2.f1ea0d71.chunk.js",
-    "static/js/2.f1ea0d71.chunk.js.map": "/my-app/static/js/2.f1ea0d71.chunk.js.map",
-    "index.html": "/my-app/index.html",
-    "static/js/2.f1ea0d71.chunk.js.LICENSE.txt": "/my-app/static/js/2.f1ea0d71.chunk.js.LICENSE.txt"
+    "main.js": "/alfa-bank-spa/static/js/main.e1637d80.chunk.js",
+    "main.js.map": "/alfa-bank-spa/static/js/main.e1637d80.chunk.js.map",
+    "runtime-main.js": "/alfa-bank-spa/static/js/runtime-main.3036cc72.js",
+    "runtime-main.js.map": "/alfa-bank-spa/static/js/runtime-main.3036cc72.js.map",
+    "static/js/2.12307d18.chunk.js": "/alfa-bank-spa/static/js/2.12307d18.chunk.js",
+    "static/js/2.12307d18.chunk.js.map": "/alfa-bank-spa/static/js/2.12307d18.chunk.js.map",
+    "index.html": "/alfa-bank-spa/index.html",
+    "static/js/2.12307d18.chunk.js.LICENSE.txt": "/alfa-bank-spa/static/js/2.12307d18.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.480eda55.js",
-    "static/js/2.f1ea0d71.chunk.js",
+    "static/js/runtime-main.3036cc72.js",
+    "static/js/2.12307d18.chunk.js",
     "static/js/main.e1637d80.chunk.js"
   ]
 }
