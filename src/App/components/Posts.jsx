@@ -52,7 +52,7 @@ const Posts = () => {
 
   const activePosts = value === 0 ? posts : favourites;
 
-  if (!posts) {
+  if (posts.length === 0) {
     return (
       <LoadingBar>
         <ReactLoading type="bubbles" color="#fff" />
