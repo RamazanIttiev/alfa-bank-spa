@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { getUsers } from '../services';
-import { mapPosts } from '../services/mappers';
-import { setPosts } from '../store/postsSlice';
 import Post from './Post';
 import ToggleButtons from './ToggleButtons';
 
@@ -34,9 +32,10 @@ const Posts = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
 
-  useEffect(async () => {
-    const posts = await getUsers();
-    dispatch(setPosts(mapPosts(posts)));
+  useEffect(() => {
+    (async () => {
+      getUsers(dispatch);
+    })();
   }, []);
 
   const posts = useSelector(state => state.posts.posts);

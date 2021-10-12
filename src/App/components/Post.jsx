@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   CardHeader,
@@ -16,7 +16,6 @@ import { useDispatch } from 'react-redux';
 import { Favorite, FavoriteBorder, HighlightOffOutlined } from '@mui/icons-material';
 import { removeFavourites, addFavourites } from '../store/favouritesSlice';
 import { deletePost } from '../services';
-import { removePost } from '../store/postsSlice';
 
 const Base = styled(Card).attrs({ sx: { letterSpacing: 2 } })`
   width: 345px;
@@ -29,6 +28,7 @@ const Base = styled(Card).attrs({ sx: { letterSpacing: 2 } })`
 
 const Post = ({ id, image, owner, text, publishDate, isFavourite }) => {
   const dispatch = useDispatch();
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const handleFavourites = () => {
     if (!isFavourite) {
@@ -37,8 +37,11 @@ const Post = ({ id, image, owner, text, publishDate, isFavourite }) => {
   };
 
   const handleDelete = async () => {
-    const deletedPost = await deletePost(id);
-    dispatch(removePost(deletedPost));
+    setIsDeleted(true);
+    (async () => {
+      deletePost(id, dispatch);
+    })();
+    setIsDeleted(false);
   };
 
   return (
@@ -59,7 +62,7 @@ const Post = ({ id, image, owner, text, publishDate, isFavourite }) => {
             checkedIcon={<Favorite />}
           />
         </IconButton>
-        <IconButton onClick={handleDelete}>
+        <IconButton disabled={isDeleted} onClick={handleDelete}>
           <HighlightOffOutlined color="secondary" />
         </IconButton>
       </CardActions>
