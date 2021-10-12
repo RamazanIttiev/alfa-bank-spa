@@ -2,16 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const postsSlice = createSlice({
   name: 'posts',
-  initialState: {
-    posts: [],
-  },
+  initialState: [],
   reducers: {
-    setPosts: (state, { payload }) => {
-      state.posts = payload;
-    },
-    removePost: (state, { payload }) => {
-      state.posts = state.posts.filter(post => post.id !== payload);
-    },
+    setPosts: (state, { payload }) => (state = payload),
+
+    removePost: (state, { payload }) => state.filter(post => post.id !== payload),
   },
 });
 
