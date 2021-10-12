@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import { Box, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -38,10 +39,11 @@ const LoadingBar = styled.div`
 const Posts = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
-      getPosts(dispatch);
+      getPosts(dispatch, setLoading);
     })();
   }, []);
 
@@ -52,7 +54,7 @@ const Posts = () => {
 
   const activePosts = value === 0 ? posts : favourites;
 
-  if (posts.length === 0) {
+  if (loading) {
     return (
       <LoadingBar>
         <ReactLoading type="bubbles" color="#fff" />
@@ -65,6 +67,8 @@ const Posts = () => {
       <PostsWrapper container>
         {favourites.length === 0 && value === 1 ? (
           <EmptyMessage>Favourite list is empty</EmptyMessage>
+        ) : posts.length === 0 && value === 0 ? (
+          <EmptyMessage>You do not have any posts</EmptyMessage>
         ) : (
           activePosts.map(post => (
             <Grid key={post.id} item>

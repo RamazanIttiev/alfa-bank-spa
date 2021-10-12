@@ -2,7 +2,7 @@ import { URL } from '../utils';
 import { mapPosts } from './mappers';
 import { removePost, setPosts } from '../store/postsSlice';
 
-export const getPosts = async dispatch => {
+export const getPosts = async (dispatch, setLoading) => {
   try {
     const response = await fetch(`${URL}post?limit=9`, {
       headers: {
@@ -11,6 +11,7 @@ export const getPosts = async dispatch => {
     });
     const result = await response.json();
     dispatch(setPosts(mapPosts(result.data)));
+    setLoading(false);
   } catch (error) {
     console.error(error);
   }
