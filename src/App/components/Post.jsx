@@ -18,7 +18,7 @@ import { removeFavourites, addFavourites } from '../store/favouritesSlice';
 import { deletePost } from '../services';
 import { removePost } from '../store/postsSlice';
 
-const Base = styled(Card)`
+const Base = styled(Card).attrs({ sx: { letterSpacing: 2 } })`
   width: 345px;
   min-height: 420px;
   border-radius: 16px;

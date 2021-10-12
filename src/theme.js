@@ -18,4 +18,7 @@ export const theme = createTheme({
       secondary: '#00000',
     },
   },
+  typography: {
+    fontFamily: '"Montserrat", "Open Sans"',
+  },
 });
