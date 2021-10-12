@@ -1,5 +1,4 @@
 {
-  "homepage": "https://ramazanittiev.github.io",
   "name": "alfa-bank",
   "version": "0.1.0",
   "private": true,
@@ -34,12 +33,9 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "gh-pages": "^3.2.3",
     "prettier": "^2.3.2"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
