@@ -2,6 +2,7 @@ import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
 
 const ToggleButtons = ({ value, setValue }) => {
   const handleChange = (event, newValue) => {
@@ -16,6 +17,11 @@ const ToggleButtons = ({ value, setValue }) => {
       </Tabs>
     </Box>
   );
+};
+
+ToggleButtons.propTypes = {
+  value: PropTypes.number.isRequired,
+  setValue: PropTypes.func.isRequired,
 };
 
 export default ToggleButtons;

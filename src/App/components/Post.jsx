@@ -14,6 +14,7 @@ import {
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { Favorite, FavoriteBorder, HighlightOffOutlined } from '@mui/icons-material';
+import PropTypes from 'prop-types';
 import { removeFavourites, addFavourites } from '../store/favouritesSlice';
 import { deletePost } from '../services';
 
@@ -77,4 +78,14 @@ const Post = ({ id, image, author, text, publishDate, isFavourite }) => {
     </Base>
   );
 };
+
+Post.propTypes = {
+  id: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  publishDate: PropTypes.string.isRequired,
+  isFavourite: PropTypes.bool.isRequired,
+  author: PropTypes.oneOfType([PropTypes.object]).isRequired,
+};
+
 export default Post;
