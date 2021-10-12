@@ -3,7 +3,7 @@ import { URL } from '../utils';
 export const getUsers = () =>
   fetch(`${URL}post?limit=9`, {
     headers: {
-      'app-id': '616301612d5c2975ba6340aa',
+      'app-id': process.env.REACT_APP_API_ID,
     },
   })
     .then(response => response.json())
@@ -13,6 +13,6 @@ export const deletePost = id =>
   fetch(`${URL}post/${id}`, {
     method: 'DELETE',
     headers: {
-      'app-id': '616301612d5c2975ba6340aa',
+      'app-id': `${process.env.REACT_APP_API_ID}`,
     },
   }).then(data => data.json());
