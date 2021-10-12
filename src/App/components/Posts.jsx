@@ -2,6 +2,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import ReactLoading from 'react-loading';
 import { getUsers } from '../services';
 import Post from './Post';
 import ToggleButtons from './ToggleButtons';
@@ -28,6 +29,12 @@ const EmptyMessage = styled(Typography).attrs({
   transform: translate(-50%, -50%);
 `;
 
+const LoadingBar = styled.div`
+  display: grid;
+  justify-content: center;
+  margin-top: 10px;
+`;
+
 const Posts = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
@@ -45,6 +52,13 @@ const Posts = () => {
 
   const togglePosts = value === 0 ? posts : favourites;
 
+  if (posts.length === 0) {
+    return (
+      <LoadingBar>
+        <ReactLoading type="bubbles" color="#fff" />
+      </LoadingBar>
+    );
+  }
   return (
     <Base>
       <ToggleButtons value={value} setValue={setValue} />
