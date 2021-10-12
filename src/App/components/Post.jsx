@@ -26,6 +26,15 @@ const Base = styled(Card).attrs({ sx: { letterSpacing: 2 } })`
   justify-content: space-around;
 `;
 
+const StyledTypography = styled(Typography)`
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: auto;
+  text-overflow: ellipsis;
+  display: block;
+  display: -webkit-box;
+`;
+
 const Post = ({ id, image, author, text, publishDate, isFavourite }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -52,7 +61,7 @@ const Post = ({ id, image, author, text, publishDate, isFavourite }) => {
       />
       <CardMedia component="img" height="194" image={image} alt={text} />
       <CardContent>
-        <Typography>{text}</Typography>
+        <StyledTypography>{text}</StyledTypography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton onClick={handleFavourites}>
