@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
@@ -21,6 +21,15 @@ const PostsWrapper = styled(Grid).attrs({
   spacing: 5,
 })``;
 
+const EmptyMessage = styled(Typography).attrs({
+  variant: 'h1',
+})`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 const Posts = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState(0);
@@ -41,11 +50,15 @@ const Posts = () => {
     <Base>
       <ToggleButtons value={value} setValue={setValue} />
       <PostsWrapper container>
-        {togglePosts.map(post => (
-          <Grid key={post.id} item>
-            <Post isFavourite={favourites.indexOf(post.id) >= 0} {...post} />
-          </Grid>
-        ))}
+        {favouritePosts.length === 0 && value === 1 ? (
+          <EmptyMessage>Favourite list is empty</EmptyMessage>
+        ) : (
+          togglePosts.map(post => (
+            <Grid key={post.id} item>
+              <Post isFavourite={favourites.indexOf(post.id) >= 0} {...post} />
+            </Grid>
+          ))
+        )}
       </PostsWrapper>
     </Base>
   );
