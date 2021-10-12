@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ReactLoading from 'react-loading';
-import { getUsers } from '../services';
+import { getPosts } from '../services';
 import Post from './Post';
 import ToggleButtons from './ToggleButtons';
 
@@ -41,7 +41,7 @@ const Posts = () => {
 
   useEffect(() => {
     (async () => {
-      getUsers(dispatch);
+      getPosts(dispatch);
     })();
   }, []);
 
